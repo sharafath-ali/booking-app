@@ -18,10 +18,10 @@ func main() {
 	var userTickets uint
 	// list of total booked users array
 	var bookings = [50]string{}
-	// pointer in go 
+	// pointer in go
 	fmt.Printf("%v\n", bookings)
 	fmt.Println(bookings)
-	fmt.Println(&bookings)
+	fmt.Printf("%p\n", &bookings) // prints: 0xc000014078  ← clean address
 	fmt.Println("Enter your first name: ")
 	fmt.Scan(&firstName)
 	fmt.Println("Enter your last name: ")
@@ -32,6 +32,12 @@ func main() {
 	fmt.Println(&firstName, &lastName, &email)
 	fmt.Println("Enter number of tickets: ")
 	fmt.Scan(&userTickets)
+	bookings[0] = firstName + " " + lastName
+	fmt.Println("this is whole bookings array : ", bookings)
+	fmt.Println("this is first element of bookings array : ", bookings[0])
+	fmt.Println("this is length of bookings array : ", len(bookings))
+	fmt.Println("this is capacity of bookings array : ", cap(bookings))
+	fmt.Printf("this is type of bookings array : %T\n", bookings) // prints: [50]string if we use %T 
 	remainingTickets = remainingTickets - userTickets
 	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conference)
