@@ -33,6 +33,12 @@ func main() {
 	fmt.Println(&firstName, &lastName, &email)
 	fmt.Println("Enter number of tickets: ")
 	fmt.Scan(&userTickets)
+	bookingsSlice = append(bookingsSlice, firstName+" "+lastName)
+	fmt.Println("this is whole bookings slice : ", bookingsSlice)
+	fmt.Println("this is first element of bookings slice : ", bookingsSlice[0])
+	fmt.Println("this is length of bookings slice : ", len(bookingsSlice))
+	fmt.Println("this is capacity of bookings slice : ", cap(bookingsSlice))
+	fmt.Printf("this is type of bookings slice : %T\n", bookingsSlice) // prints: []string if we use %T
 	bookingsArray[0] = firstName + " " + lastName
 	fmt.Println("this is whole bookings array : ", bookingsArray)
 	fmt.Println("this is first element of bookings array : ", bookingsArray[0])
