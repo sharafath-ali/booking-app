@@ -17,6 +17,10 @@ func main() {
 	var email string
 	var userTickets uint
 	bookings := true
+	// pointer in go 
+	fmt.Printf("%v\n", bookings)
+	fmt.Println(bookings)
+	fmt.Println(&bookings)
 	fmt.Println("Enter your first name: ")
 	fmt.Scan(&firstName)
 	fmt.Println("Enter your last name: ")
