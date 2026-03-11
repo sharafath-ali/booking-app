@@ -16,7 +16,8 @@ func main() {
 	var lastName string
 	var email string
 	var userTickets uint
-	bookings := true
+	// list of total booked users array
+	var bookings = [50]string{}
 	// pointer in go 
 	fmt.Printf("%v\n", bookings)
 	fmt.Println(bookings)
@@ -27,6 +28,8 @@ func main() {
 	fmt.Scan(&lastName)
 	fmt.Println("Enter your email: ")
 	fmt.Scan(&email)
+	fmt.Println(firstName, lastName, email)
+	fmt.Println(&firstName, &lastName, &email)
 	fmt.Println("Enter number of tickets: ")
 	fmt.Scan(&userTickets)
 	remainingTickets = remainingTickets - userTickets
