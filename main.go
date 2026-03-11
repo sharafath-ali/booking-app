@@ -16,6 +16,7 @@ func main() {
 	var lastName string
 	var email string
 	var userTickets uint
+	bookings := true
 	fmt.Println("Enter your first name: ")
 	fmt.Scan(&firstName)
 	fmt.Println("Enter your last name: ")
