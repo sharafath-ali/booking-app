@@ -24,6 +24,42 @@ func printWelcome(conference string, conferenceTickets int, remainingTickets uin
 	fmt.Printf("get your tickets here to attend\n")
 }
 
+func getUserInput() (string, string, string, uint) {
+	var firstName string
+	var lastName string
+	var email string
+	var userTickets uint
+
+	for {
+		fmt.Println("Enter your first name: ")
+		fmt.Scan(&firstName)
+
+		if len(firstName) < 2 || !isValidName(firstName) {
+			fmt.Println("Invalid input! Please enter a valid first name.")
+			continue // ✅ inside for loop — valid
+		}
+		fmt.Println("Enter your last name: ")
+		fmt.Scan(&lastName)
+
+		if len(lastName) < 2 || !isValidName(lastName) {
+			fmt.Println("Invalid input! Please enter a valid last name.")
+			continue // ✅ inside for loop — valid
+		}
+
+		fmt.Println("Enter your email: ")
+		fmt.Scan(&email)
+
+		if !strings.Contains(email, "@") {
+			fmt.Println("Invalid input! Please enter a valid email.")
+			continue // ✅ inside for loop — valid
+		}
+
+		break // all valid — exit the loop
+	}
+
+	return firstName, lastName, email, userTickets
+}
+
 func main() {
 	var conference string = "Go Conference"
 	const conferenceTickets int = 50
@@ -32,36 +68,14 @@ func main() {
 	var bookingsSlice = []string{}
 	printWelcome(conference, conferenceTickets, remainingTickets)
 	for remainingTickets > 0 {
-		var firstName string
-		var lastName string
-		var email string
-		var userTickets uint
 		// list of total booked users array
 		// pointer in go
 		fmt.Printf("%v\n", bookingsArray)
 		fmt.Println(bookingsArray)
 		fmt.Printf("%p\n", &bookingsArray) // prints: 0xc000014078  ← clean address
-		fmt.Println("Enter your first name: ")
-		fmt.Scan(&firstName)
 
-		fmt.Println("Enter your last name: ")
-		fmt.Scan(&lastName)
+		firstName, lastName, email, userTickets := getUserInput()
 
-		validater := len(firstName) >= 2 && len(lastName) >= 2 && isValidName(firstName) && isValidName(lastName)
-
-		if !validater {
-			fmt.Println("Invalid input! Please enter a valid name.")
-			continue
-		}
-
-		fmt.Println("Enter your email: ")
-		fmt.Scan(&email)
-
-		validater = strings.Contains(email, "@")
-		if !validater {
-			fmt.Println("Invalid input! Please enter a valid email.")
-			continue
-		}
 		fmt.Println(firstName, lastName, email)
 		fmt.Println(&firstName, &lastName, &email)
 		fmt.Println("Enter number of tickets: ")
