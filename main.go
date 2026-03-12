@@ -60,8 +60,10 @@ func getUserInput() (string, string, string, uint) {
 	return firstName, lastName, email, userTickets
 }
 
+// package level varible
+var conference string = "Go Conference"
+
 func main() {
-	var conference string = "Go Conference"
 	const conferenceTickets int = 50
 	var remainingTickets uint = 50
 	var bookingsArray = [50]string{}
