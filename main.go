@@ -96,7 +96,8 @@ func main() {
 		// fmt.Println("this is capacity of bookings array : ", cap(bookingsArray))
 		// fmt.Printf("this is type of bookings array : %T\n", bookingsArray) // prints: [50]string if we use %T
 		remainingTickets -= userTickets // update BEFORE printing so all output shows correct count
-		Printfirstname(bookingsSlice, firstName, lastName, userTickets, email, conference)
+		firstnames := Printfirstname(bookingsSlice, firstName, lastName, userTickets, email, conference)
+		fmt.Println("this is firstnames : ", firstnames)
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conference)
 		checkRemainingTickets(remainingTickets)
@@ -112,12 +113,12 @@ func checkRemainingTickets(remainingTickets uint) {
 	}
 }
 
-func Printfirstname(bookingsSlice []string, firstName string, lastName string, userTickets uint, email string, conference string) {
+func Printfirstname(bookingsSlice []string, firstName string, lastName string, userTickets uint, email string, conference string) []string {
 	var firstnames = []string{}
 	// for loop to get firstnames
 	for _, items := range bookingsSlice {
 		var names = strings.Fields(items)
 		firstnames = append(firstnames, names[0])
 	}
-	fmt.Println("this is firstnames : ", firstnames)
+	return firstnames
 }
