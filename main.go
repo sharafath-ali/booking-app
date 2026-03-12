@@ -59,6 +59,7 @@ func main() {
 		fmt.Println("this is length of bookings slice : ", len(bookingsSlice))
 		fmt.Println("this is capacity of bookings slice : ", cap(bookingsSlice))
 		fmt.Printf("this is type of bookings slice : %T\n", bookingsSlice) // prints: []string if we use %T
+
 		// bookingsArray[0] = firstName + " " + lastName
 		// fmt.Println("this is whole bookings array : ", bookingsArray)
 		// fmt.Println("this is first element of bookings array : ", bookingsArray[0])
@@ -66,6 +67,7 @@ func main() {
 		// fmt.Println("this is capacity of bookings array : ", cap(bookingsArray))
 		// fmt.Printf("this is type of bookings array : %T\n", bookingsArray) // prints: [50]string if we use %T
 		var firstnames = []string{}
+
 		// for loop to get firstnames
 		for _, items := range bookingsSlice {
 			var names = strings.Fields(items)
