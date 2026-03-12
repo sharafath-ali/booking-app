@@ -15,18 +15,22 @@ func isValidName(s string) bool {
 	return true
 }
 
-func main() {
-	var conference string = "Go Conference"
-	const conferenceTickets int = 50
-	var remainingTickets uint = 50
+func printWelcome(conference string, conferenceTickets int, remainingTickets uint) {
 	fmt.Printf("welcome to our " + conference + " booking system\n")
 	fmt.Printf(conference)
 	fmt.Printf("\n%s\n", conference)
 	fmt.Println("welcome to our ", conference, "booking system\n")
 	fmt.Printf("we have a total of %v tickets and %v are still available\n", conferenceTickets, remainingTickets)
 	fmt.Printf("get your tickets here to attend\n")
+}
+
+func main() {
+	var conference string = "Go Conference"
+	const conferenceTickets int = 50
+	var remainingTickets uint = 50
 	var bookingsArray = [50]string{}
 	var bookingsSlice = []string{}
+	printWelcome(conference, conferenceTickets, remainingTickets)
 	for remainingTickets > 0 {
 		var firstName string
 		var lastName string
@@ -44,7 +48,7 @@ func main() {
 		fmt.Scan(&lastName)
 
 		validater := len(firstName) >= 2 && len(lastName) >= 2 && isValidName(firstName) && isValidName(lastName)
-		
+
 		if !validater {
 			fmt.Println("Invalid input! Please enter a valid name.")
 			continue
