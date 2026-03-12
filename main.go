@@ -24,6 +24,15 @@ func printWelcome(conference string, conferenceTickets int, remainingTickets uin
 	fmt.Printf("get your tickets here to attend\n")
 }
 
+func checkRemainingTickets(remainingTickets uint) {
+	// if else case
+	if remainingTickets == 0 {
+		fmt.Println("all tickets are booked")
+	} else {
+		fmt.Printf("%v tickets are still available\n", remainingTickets)
+	}
+}
+
 func main() {
 	var conference string = "Go Conference"
 	const conferenceTickets int = 50
@@ -106,12 +115,6 @@ func main() {
 		remainingTickets = remainingTickets - userTickets
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conference)
-
-		// if else case
-		if remainingTickets == 0 {
-			fmt.Println("all tickets are booked")
-		} else {
-			fmt.Printf("%v tickets are still available\n", remainingTickets)
-		}
+		checkRemainingTickets(remainingTickets)
 	}
 }
