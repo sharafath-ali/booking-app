@@ -95,6 +95,7 @@ func main() {
 		// fmt.Println("this is length of bookings array : ", len(bookingsArray))
 		// fmt.Println("this is capacity of bookings array : ", cap(bookingsArray))
 		// fmt.Printf("this is type of bookings array : %T\n", bookingsArray) // prints: [50]string if we use %T
+		remainingTickets -= userTickets // update BEFORE printing so all output shows correct count
 		Printfirstname(bookingsSlice, firstName, lastName, userTickets, email, conference)
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conference)
