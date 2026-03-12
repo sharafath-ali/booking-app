@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	var conference string = "Go Conference"
@@ -33,7 +36,17 @@ func main() {
 		fmt.Println(firstName, lastName, email)
 		fmt.Println(&firstName, &lastName, &email)
 		fmt.Println("Enter number of tickets: ")
-		fmt.Scan(&userTickets)
+		_, err := fmt.Scan(&userTickets)
+		if err != nil {
+			fmt.Println("Invalid input! Please enter a number.")
+			fmt.Scanln() // clear the input buffer
+			continue
+		}
+
+		if userTickets == 0 {
+			fmt.Println("Please enter at least 1 ticket.")
+			continue
+		}
 
 		if userTickets > remainingTickets {
 			fmt.Printf("We only have %v tickets left! Please try again.\n", remainingTickets)
@@ -52,6 +65,12 @@ func main() {
 		// fmt.Println("this is length of bookings array : ", len(bookingsArray))
 		// fmt.Println("this is capacity of bookings array : ", cap(bookingsArray))
 		// fmt.Printf("this is type of bookings array : %T\n", bookingsArray) // prints: [50]string if we use %T
+		var firstnames = []string{}
+		for _, items := range bookingsSlice {
+			var names = strings.Fields(items)
+			firstnames = append(firstnames, names[0])
+		}
+		fmt.Println("this is firstnames : ", firstnames)
 		remainingTickets = remainingTickets - userTickets
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conference)
