@@ -3,7 +3,17 @@ package main
 import (
 	"fmt"
 	"strings"
+	"unicode"
 )
+
+func isValidName(s string) bool {
+	for _, r := range s {
+		if !unicode.IsLetter(r) {
+			return false
+		}
+	}
+	return true
+}
 
 func main() {
 	var conference string = "Go Conference"
@@ -29,10 +39,25 @@ func main() {
 		fmt.Printf("%p\n", &bookingsArray) // prints: 0xc000014078  ← clean address
 		fmt.Println("Enter your first name: ")
 		fmt.Scan(&firstName)
+
 		fmt.Println("Enter your last name: ")
 		fmt.Scan(&lastName)
+
+		validater := len(firstName) >= 2 && len(lastName) >= 2 && isValidName(firstName) && isValidName(lastName)
+		
+		if !validater {
+			fmt.Println("Invalid input! Please enter a valid name.")
+			continue
+		}
+
 		fmt.Println("Enter your email: ")
 		fmt.Scan(&email)
+
+		validater = strings.Contains(email, "@")
+		if !validater {
+			fmt.Println("Invalid input! Please enter a valid email.")
+			continue
+		}
 		fmt.Println(firstName, lastName, email)
 		fmt.Println(&firstName, &lastName, &email)
 		fmt.Println("Enter number of tickets: ")
