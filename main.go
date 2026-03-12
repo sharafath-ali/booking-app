@@ -24,15 +24,6 @@ func printWelcome(conference string, conferenceTickets int, remainingTickets uin
 	fmt.Printf("get your tickets here to attend\n")
 }
 
-func checkRemainingTickets(remainingTickets uint) {
-	// if else case
-	if remainingTickets == 0 {
-		fmt.Println("all tickets are booked")
-	} else {
-		fmt.Printf("%v tickets are still available\n", remainingTickets)
-	}
-}
-
 func main() {
 	var conference string = "Go Conference"
 	const conferenceTickets int = 50
@@ -104,17 +95,28 @@ func main() {
 		// fmt.Println("this is length of bookings array : ", len(bookingsArray))
 		// fmt.Println("this is capacity of bookings array : ", cap(bookingsArray))
 		// fmt.Printf("this is type of bookings array : %T\n", bookingsArray) // prints: [50]string if we use %T
-		var firstnames = []string{}
-
-		// for loop to get firstnames
-		for _, items := range bookingsSlice {
-			var names = strings.Fields(items)
-			firstnames = append(firstnames, names[0])
-		}
-		fmt.Println("this is firstnames : ", firstnames)
-		remainingTickets = remainingTickets - userTickets
+		Printfirstname(bookingsSlice, firstName, lastName, userTickets, email, conference)
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conference)
 		checkRemainingTickets(remainingTickets)
 	}
+}
+
+func checkRemainingTickets(remainingTickets uint) {
+	// if else case
+	if remainingTickets == 0 {
+		fmt.Println("all tickets are booked")
+	} else {
+		fmt.Printf("%v tickets are still available\n", remainingTickets)
+	}
+}
+
+func Printfirstname(bookingsSlice []string, firstName string, lastName string, userTickets uint, email string, conference string) {
+	var firstnames = []string{}
+	// for loop to get firstnames
+	for _, items := range bookingsSlice {
+		var names = strings.Fields(items)
+		firstnames = append(firstnames, names[0])
+	}
+	fmt.Println("this is firstnames : ", firstnames)
 }
