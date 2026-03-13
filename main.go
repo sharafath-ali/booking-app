@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"strings"
 	"bookingapp/helper"
+	"fmt"
+	"strconv"
+	"strings"
 )
 
 func getUserInput() (string, string, string, uint) {
@@ -50,6 +51,7 @@ func main() {
 	var remainingTickets uint = 50
 	var bookingsArray = [50]string{}
 	var bookingsSlice = []string{}
+	var bookingsMap = make([]map[string]string, 0)
 	helper.PrintWelcome(conference, conferenceTickets, remainingTickets)
 	for remainingTickets > 0 {
 		// list of total booked users array
@@ -80,7 +82,14 @@ func main() {
 			continue
 		}
 
+		var userData = make(map[string]string)
+		userData["firstName"] = firstName
+		userData["lastName"] = lastName
+		userData["email"] = email
+		userData["tickets"] = strconv.FormatUint(uint64(userTickets), 10)
+
 		bookingsSlice = append(bookingsSlice, firstName+" "+lastName)
+		bookingsMap = append(bookingsMap, userData)
 		fmt.Println("this is whole bookings slice : ", bookingsSlice)
 		fmt.Println("this is first element of bookings slice : ", bookingsSlice[0])
 		fmt.Println("this is length of bookings slice : ", len(bookingsSlice))
