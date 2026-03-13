@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func getUserInput() (string, string, string, uint) {
@@ -82,14 +83,13 @@ func main() {
 			continue
 		}
 
-
 		// struct in go
 
 		type User struct {
 			firstName string
-			lastName string
-			email string
-			tickets uint
+			lastName  string
+			email     string
+			tickets   uint
 		}
 
 		var user User
@@ -124,6 +124,9 @@ func main() {
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conference)
 		checkRemainingTickets(remainingTickets)
+		sendTicketEmailWithGoroutine()
+		// sendTicketEmail() // this will run in foreground since we did not used go keyword
+		go sendTicketEmail() // this will run in background since we used go keyword
 	}
 }
 
@@ -144,4 +147,18 @@ func Printfirstname(bookingsSlice []string, firstName string, lastName string, u
 		firstnames = append(firstnames, names[0])
 	}
 	return firstnames
+}
+
+// go concurrency
+func sendTicketEmail() {
+	// sleep will block the thread , if we dont use goroutine it will block the main thread
+	time.Sleep(10 * time.Second)
+	fmt.Println("Sending ticket email...")
+}
+
+func sendTicketEmailWithGoroutine() {
+	go func() {
+		time.Sleep(10 * time.Second)
+		fmt.Println("Sending ticket email with goroutine...")
+	}()
 }
