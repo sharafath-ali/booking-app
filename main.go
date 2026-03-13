@@ -5,8 +5,12 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
+
+// wait group in go which will wait for all the goroutines to finish before the main thread exits
+var wg = sync.WaitGroup{}
 
 func getUserInput() (string, string, string, uint) {
 	var firstName string
@@ -124,10 +128,13 @@ func main() {
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conference)
 		checkRemainingTickets(remainingTickets)
-		sendTicketEmailWithGoroutine()
+		wg.Add(1)
+		sendTicketEmailWithGoroutine() // goroutine is INSIDE this function
 		// sendTicketEmail() // this will run in foreground since we did not used go keyword
-		go sendTicketEmail() // this will run in background since we used go keyword
+		wg.Add(1)
+		go sendTicketEmail() // goroutine started here with 'go' keyword
 	}
+	wg.Wait()
 }
 
 func checkRemainingTickets(remainingTickets uint) {
@@ -151,14 +158,15 @@ func Printfirstname(bookingsSlice []string, firstName string, lastName string, u
 
 // go concurrency
 func sendTicketEmail() {
-	// sleep will block the thread , if we dont use goroutine it will block the main thread
 	time.Sleep(10 * time.Second)
 	fmt.Println("Sending ticket email...")
+	defer wg.Done() // signals WaitGroup when this goroutine finishes
 }
 
 func sendTicketEmailWithGoroutine() {
 	go func() {
 		time.Sleep(10 * time.Second)
 		fmt.Println("Sending ticket email with goroutine...")
+		defer wg.Done() // signals WaitGroup when this goroutine finishes
 	}()
 }
