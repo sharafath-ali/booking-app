@@ -82,6 +82,22 @@ func main() {
 			continue
 		}
 
+
+		// struct in go
+
+		type User struct {
+			firstName string
+			lastName string
+			email string
+			tickets uint
+		}
+
+		var user User
+		user.firstName = firstName
+		user.lastName = lastName
+		user.email = email
+		user.tickets = userTickets
+		// map in go
 		var userData = make(map[string]string)
 		userData["firstName"] = firstName
 		userData["lastName"] = lastName
