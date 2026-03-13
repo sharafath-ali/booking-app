@@ -3,17 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
-	"unicode"
 )
-
-func isValidName(s string) bool {
-	for _, r := range s {
-		if !unicode.IsLetter(r) {
-			return false
-		}
-	}
-	return true
-}
 
 func printWelcome(conference string, conferenceTickets int, remainingTickets uint) {
 	fmt.Printf("welcome to our " + conference + " booking system\n")
