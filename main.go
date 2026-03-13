@@ -3,16 +3,8 @@ package main
 import (
 	"fmt"
 	"strings"
+	"bookingapp/helper"
 )
-
-func printWelcome(conference string, conferenceTickets int, remainingTickets uint) {
-	fmt.Printf("welcome to our " + conference + " booking system\n")
-	fmt.Printf(conference)
-	fmt.Printf("\n%s\n", conference)
-	fmt.Println("welcome to our ", conference, "booking system\n")
-	fmt.Printf("we have a total of %v tickets and %v are still available\n", conferenceTickets, remainingTickets)
-	fmt.Printf("get your tickets here to attend\n")
-}
 
 func getUserInput() (string, string, string, uint) {
 	var firstName string
@@ -58,7 +50,7 @@ func main() {
 	var remainingTickets uint = 50
 	var bookingsArray = [50]string{}
 	var bookingsSlice = []string{}
-	printWelcome(conference, conferenceTickets, remainingTickets)
+	helper.PrintWelcome(conference, conferenceTickets, remainingTickets)
 	for remainingTickets > 0 {
 		// list of total booked users array
 		// pointer in go
