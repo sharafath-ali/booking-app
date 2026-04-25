@@ -211,4 +211,22 @@ go mod why example.com/somepkg
 
 it tells you what part of your code or which other module is requiring that dependency. Essentially, it helps you trace the chain of dependencies — answering **"why is this module in my project?"**
 
+#### Note on `go get`
+
+`go get` is used to add or upgrade a dependency in your module. When you run:
+
+```bash
+go get github.com/some/package
+```
+
+it fetches the module, adds it to your `go.mod`, and updates `go.sum` with the checksum. You can also pin a specific version or commit:
+
+```bash
+go get github.com/some/package@v1.2.3        # specific version
+go get github.com/some/package@commitHash    # specific commit
+```
+
+> **Important:** `go get` must be run **inside a directory that has a `go.mod`** file. It fetches entire modules or packages — not individual files. It is **not** used to install binaries globally (use `go install` for that).
+
+
 
