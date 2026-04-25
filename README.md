@@ -274,3 +274,38 @@ go get example.com/mymodule          # fetch latest stable version
 
 In other words, you have full control — if you specify a version, it is exact; if you do not, Go picks the latest stable release that fits your requirements.
 
+---
+
+### 15. Essential Go Commands
+
+| Command | Description |
+|---|---|
+| `go run <file.go>` | Compiles and runs your Go source code in one step — no binary produced. |
+| `go build` | Compiles your code into an executable binary without running it. |
+| `go test` | Finds and runs all tests in files named `*_test.go` automatically. |
+
+#### Details
+
+**`go run`**
+> Used for quickly testing or running a program during development. It compiles and executes in one step but does not produce a permanent binary file.
+
+```bash
+go run main.go
+```
+
+**`go build`**
+> Compiles your Go code into an executable binary that you can run later independently. The binary is placed in the current directory by default.
+
+```bash
+go build          # produces ./main (or main.exe on Windows)
+go build -o app   # custom binary name
+```
+
+**`go test`**
+> Automatically finds and runs any test functions in files ending with `_test.go`. Used to test your code with standard Go testing tools.
+
+```bash
+go test           # run all tests in current package
+go test ./...     # run all tests in all packages
+go test -v        # verbose output
+```
