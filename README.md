@@ -201,3 +201,14 @@ go get github.com/sharafath-ali/booking-app/helper@c558906
 
 These help manage, inspect, and verify your module dependencies efficiently.
 
+#### Note on `go mod why`
+
+`go mod why` explains why a particular module is needed. When you run something like:
+
+```bash
+go mod why example.com/somepkg
+```
+
+it tells you what part of your code or which other module is requiring that dependency. Essentially, it helps you trace the chain of dependencies — answering **"why is this module in my project?"**
+
+
