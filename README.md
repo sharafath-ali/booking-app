@@ -86,6 +86,10 @@ A Go project built to explore core language concepts including goroutines, WaitG
 * Removes unused dependencies that are listed in `go.mod` but no longer imported.
 * Keeps `go.mod` and `go.sum` consistent with the actual imports in your project.
 
+#### Why `go mod tidy` matters in practice
+
+In a perfect scenario, you would only ever have exactly what you need. But in real development, things change — you might remove code that depended on certain modules, or you might have added temporary tools. `go mod tidy` ensures your `go.mod` and `go.sum` files reflect what is truly in use. It removes unused dependencies and adds any missing ones. This keeps your project clean and ensures others can reproduce your build without extra or missing dependencies.
+
 ---
 
 ### 9. Publishing a Go Package
@@ -403,3 +407,5 @@ $env:GOPROXY = "direct"
 $env:GOPROXY  = "direct"
 $env:GONOSUMDB = "*"
 ```
+
+
