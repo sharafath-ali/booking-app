@@ -339,11 +339,12 @@ vendor/
 ```  
 
 **`go clean -modcache`**
-> Clears out the entire module cache on your system. The module cache is where Go stores downloaded dependencies globally (usually at `\/pkg/mod`). Clearing it forces Go to re-download modules as needed in the future.
+> Clears out the entire module cache on your system. The module cache is where Go stores downloaded dependencies globally. On this machine it is located at `C:\Users\sharafath\go\pkg\mod`. Clearing it forces Go to re-download modules as needed in the future.
 
 ```bash
 go clean -modcache
 ```  
 
 > **Tip:** Use `go clean -modcache` when you suspect a corrupted cache, or when troubleshooting module path mismatches like the one documented in Section 12.
+
 
