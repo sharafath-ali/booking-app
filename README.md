@@ -314,6 +314,8 @@ go test -v        # verbose output
 
 ### 16. Managing Local Dependencies & Cache
 
+By default, when you use `go get`, Go downloads dependencies into a **shared module cache** on your system — not directly inside your project. This cache is global and shared across all projects. If you want to bring all dependencies into your project's own directory, use `go mod vendor`. This creates a `vendor/` folder with all dependencies stored locally. If you need to reset the global cache entirely, run `go clean -modcache` to clear it out.
+
 | Command | Description |
 |---|---|
 | `go mod vendor` | Copies all dependencies into a local `vendor/` directory. |
@@ -344,3 +346,4 @@ go clean -modcache
 ```  
 
 > **Tip:** Use `go clean -modcache` when you suspect a corrupted cache, or when troubleshooting module path mismatches like the one documented in Section 12.
+
