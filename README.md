@@ -187,4 +187,16 @@ go get github.com/sharafath-ali/booking-app/helper@c558906
 * @c558906 — pins to the exact commit that contains the corrected go.mod.
 
 > **Tip:** Tag your releases (git tag v0.1.0 && git push --tags) to avoid pseudo-version issues. Tagged versions are handled more reliably by the Go proxy.
+---
 
+### 13. Other Useful go mod Commands
+
+| Command | Description |
+|---|---|
+| go mod init <module-path> | Initializes a new module by creating a go.mod file with the given module path. |
+| go mod download | Downloads all modules required by the current module, based on go.mod. |
+| go mod verify | Checks that the downloaded module files have not been modified (ensures integrity). |
+| go mod graph | Prints the module requirement graph, showing how modules depend on each other. |
+| go mod vendor | Copies all necessary packages into a endor/ folder, allowing vendoring of dependencies. |
+
+These help manage, inspect, and verify your module dependencies efficiently.
