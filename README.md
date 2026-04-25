@@ -80,9 +80,11 @@ A Go project built to explore core language concepts including goroutines, WaitG
 
 ### 8. go mod tidy
 
-* Adds missing dependencies.
-* Removes unused dependencies.
-* Keeps go.mod and go.sum consistent.
+`go mod tidy` analyzes your code and your `go.mod` file. It adds any missing dependencies you're using but didn't explicitly list, and it removes any dependencies you no longer need. In short, it ensures your `go.mod` and `go.sum` are consistent with the actual imports in your project.
+
+* Adds missing dependencies that are imported in your code but not yet listed in `go.mod`.
+* Removes unused dependencies that are listed in `go.mod` but no longer imported.
+* Keeps `go.mod` and `go.sum` consistent with the actual imports in your project.
 
 ---
 
@@ -185,3 +187,4 @@ go get github.com/sharafath-ali/booking-app/helper@c558906
 * @c558906 — pins to the exact commit that contains the corrected go.mod.
 
 > **Tip:** Tag your releases (git tag v0.1.0 && git push --tags) to avoid pseudo-version issues. Tagged versions are handled more reliably by the Go proxy.
+
