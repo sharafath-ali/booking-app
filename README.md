@@ -228,5 +228,39 @@ go get github.com/some/package@commitHash    # specific commit
 
 > **Important:** `go get` must be run **inside a directory that has a `go.mod`** file. It fetches entire modules or packages — not individual files. It is **not** used to install binaries globally (use `go install` for that).
 
+---
 
+### 14. Semantic Versioning (SemVer)
 
+Semantic versioning, often called **SemVer**, is a standard for numbering software versions in a meaningful way. A version has three parts:
+
+`
+major.minor.patch
+`
+
+| Part | When to increment | Example |
+|---|---|---|
+| **Major** | Breaking changes — not backward compatible | 1.x.x → 2.0.0 |
+| **Minor** | New features — backward compatible | 1.2.x → 1.3.0 |
+| **Patch** | Bug fixes — no functionality change | 1.2.3 → 1.2.4 |
+
+For example, version 2.3.4 means:
+- **2** → major version
+- **3** → minor version
+- **4** → patch level
+
+This system helps everyone understand the impact of an update at a glance. Users know when updates may require adjustments in their own code, when they're getting new features, or when they're simply getting bug fixes.
+
+#### SemVer and go get
+
+In the context of go get, Go uses semantic versioning to determine which version of a dependency to fetch:
+
+`ash
+go get example.com/mymodule@v1.2.3   # fetch exact version
+go get example.com/mymodule          # fetch latest stable version
+`
+
+* If you **don't specify a version**, Go fetches the latest stable (highest) version.
+* If the **major version changes** (e.g. 1 → 2), Go treats it as a potentially breaking change and requires you to explicitly choose to upgrade.
+
+> In short, semantic versioning ensures go get knows when updates might impact your code, when features are added, or when only minor fixes occur.
