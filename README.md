@@ -347,4 +347,59 @@ go clean -modcache
 
 > **Tip:** Use `go clean -modcache` when you suspect a corrupted cache, or when troubleshooting module path mismatches like the one documented in Section 12.
 
+---
 
+### 17. Go Proxy (`GOPROXY`)
+
+The Go proxy is a service that **caches and serves Go modules**. Instead of fetching modules directly from version control systems like GitHub, Go requests them from a proxy. The default public proxy is `proxy.golang.org`.
+
+#### How it works
+
+When you run `go get`, Go typically fetches modules from the proxy rather than directly from the source repository. This provides three key benefits:
+
+| Benefit | Description |
+|---|---|
+| **Speed** | Modules are cached — downloads are faster than fetching from source. |
+| **Immutability** | Once a version is cached, it never changes — builds are reproducible. |
+| **Availability** | Isolates you from temporary GitHub outages or repository deletions. |
+
+#### Diagram — How the Go Proxy fits in
+
+```
+         GITHUB
+           |  \
+           v   \
+CLI ---> GOPROXY ---------> Developer Machine
+           |        (cached modules)
+           v
+        GOSUMDB
+```
+
+- **CLI** — Your terminal where you run `go get`, `go mod tidy`, etc.
+- **GitHub** — The original source of the module code. GOPROXY fetches from here and caches it.
+- **GOPROXY** — The caching and distribution layer (`proxy.golang.org`). Sits between you and the source. Serves modules quickly and reliably.
+- **GOSUMDB** — The checksum database (`sum.golang.org`). Verifies module integrity, ensuring the module has not been tampered with.
+- **Developer Machine** — Where the module finally lands, delivered by GOPROXY as cached, verified packages.
+
+> The diagonal arrow from GitHub directly to the developer machine represents bypassing the proxy — achieved with `GOPROXY=direct`. Used for private modules or when you need a specific commit not yet cached by the proxy.
+
+#### The proxy is NOT a package manager
+
+It is a **caching and distribution layer** — not a dependency manager. Go module tooling (`go mod`, `go get`) handles version resolution and dependency management. The proxy simply acts as a fast, stable source to serve those modules.
+
+#### When to disable the proxy
+
+You typically do not need to disable it. However, in these scenarios you might:
+
+- Working with **private modules** not available to the public proxy.
+- Internal infrastructure that bypasses the public proxy.
+- Fetching a specific commit not yet cached (as seen in Section 12 of this README).
+
+```powershell
+# Bypass proxy — fetch directly from source
+$env:GOPROXY = "direct"
+
+# Bypass proxy and skip checksum verification
+$env:GOPROXY  = "direct"
+$env:GONOSUMDB = "*"
+```
