@@ -264,3 +264,13 @@ go get example.com/mymodule          # fetch latest stable version
 * If the **major version changes** (e.g. 1 → 2), Go treats it as a potentially breaking change and requires you to explicitly choose to upgrade.
 
 > In short, semantic versioning ensures go get knows when updates might impact your code, when features are added, or when only minor fixes occur.
+
+#### Version Fetching — Exact vs Latest
+
+| Scenario | Behaviour |
+|---|---|
+| `go get example.com/pkg@v1.2.3` | Fetches **exactly** version `v1.2.3` — no ambiguity. |
+| `go get example.com/pkg` | Fetches the **latest compatible stable** version Go knows about. |
+
+In other words, you have full control — if you specify a version, it is exact; if you do not, Go picks the latest stable release that fits your requirements.
+
