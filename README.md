@@ -309,3 +309,38 @@ go test           # run all tests in current package
 go test ./...     # run all tests in all packages
 go test -v        # verbose output
 ```
+
+---
+
+### 16. Managing Local Dependencies & Cache
+
+| Command | Description |
+|---|---|
+| `go mod vendor` | Copies all dependencies into a local `vendor/` directory. |
+| `go clean -modcache` | Clears the entire global module cache on your system. |
+
+#### Details
+
+**`go mod vendor`**
+> Copies all of your project's dependencies into a local `vendor/` directory. This ensures your project has all the necessary code locally, rather than relying on the central module cache or remote sources. Useful for offline builds or ensuring reproducibility.
+
+```bash
+go mod vendor
+```  
+
+After running this, your project structure will include:
+
+```
+vendor/
+  github.com/some/package/
+  ...
+```  
+
+**`go clean -modcache`**
+> Clears out the entire module cache on your system. The module cache is where Go stores downloaded dependencies globally (usually at `\/pkg/mod`). Clearing it forces Go to re-download modules as needed in the future.
+
+```bash
+go clean -modcache
+```  
+
+> **Tip:** Use `go clean -modcache` when you suspect a corrupted cache, or when troubleshooting module path mismatches like the one documented in Section 12.
