@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bookingapp/helper"
+	"github.com/sharafath-ali/booking-app/helper"
 	"fmt"
 	"strconv"
 	"strings"
